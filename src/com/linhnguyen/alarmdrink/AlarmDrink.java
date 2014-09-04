@@ -123,54 +123,6 @@ public class AlarmDrink extends ActionBarActivity {
 		cbAutoAlarm.setChecked(load());
 	}
 
-	public void startAlarm(View view) {
-		if(cbAutoAlarm.isChecked() == true){
-			Toast.makeText(this, "Auto Alarm is set", Toast.LENGTH_SHORT).show();
-			return;
-		}
-
-		cbAutoAlarm.setChecked(true);
-
-		int size = WORKINGDAY.length;
-		Calendar nowTime = Calendar.getInstance();
-
-		Calendar startTime = (Calendar) nowTime.clone();
-		startTime.set(Calendar.HOUR_OF_DAY, 8);
-		startTime.set(Calendar.MINUTE, 30);
-		startTime.set(Calendar.SECOND, 0);
-		startTime.set(Calendar.MILLISECOND, 0);
-
-		Calendar endTime = (Calendar) nowTime.clone();
-		endTime.set(Calendar.HOUR_OF_DAY, 17);
-		endTime.set(Calendar.MINUTE, 30);
-		endTime.set(Calendar.SECOND, 0);
-		endTime.set(Calendar.MILLISECOND, 0);
-
-		// if (endTime.compareTo(nowTime) < 0) {
-		// endTime.add(Calendar.DATE, 1);
-		// }
-
-		if (nowTime.DAY_OF_MONTH == 7 | nowTime.DAY_OF_MONTH == 8) {
-			startTime.set(Calendar.DAY_OF_WEEK, 2);
-			alarm.setAlarm(AlarmDrink.this, startTime);
-		} else {
-			if (nowTime.compareTo(startTime) > 0
-					&& nowTime.compareTo(endTime) < 0) {
-				alarm.setAlarm(AlarmDrink.this, nowTime);
-			} else {
-				{
-					startTime.add(Calendar.DATE, 1);
-					alarm.setAlarm(AlarmDrink.this, startTime);
-					txvTimeSet.setText(startTime.get(Calendar.HOUR_OF_DAY)
-							+ ":" + startTime.get(Calendar.MINUTE));
-				}
-
-			}
-
-		}
-		// openTimePickerDialog(false);
-	}
-
 	public void clearAlarm(View view) {
 		cbAutoAlarm.setChecked(false);
 		save(false);
@@ -196,6 +148,7 @@ public class AlarmDrink extends ActionBarActivity {
 				calender.get(Calendar.HOUR_OF_DAY),
 				calender.get(Calendar.MINUTE), b);
 		timePickerDialog.setTitle("Set Alarm Time");
+
 		timePickerDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel",
 				new DialogInterface.OnClickListener() {
 
@@ -233,44 +186,5 @@ public class AlarmDrink extends ActionBarActivity {
 						Toast.LENGTH_SHORT).show();
 		}
 	};
-
-	public void autoAlarm(View v) {
-		int size = WORKINGDAY.length;
-		Calendar nowTime = Calendar.getInstance();
-
-		Calendar startTime = (Calendar) nowTime.clone();
-		startTime.set(Calendar.HOUR_OF_DAY, 8);
-		startTime.set(Calendar.MINUTE, 30);
-		startTime.set(Calendar.SECOND, 0);
-		startTime.set(Calendar.MILLISECOND, 0);
-
-		Calendar endTime = (Calendar) nowTime.clone();
-		endTime.set(Calendar.HOUR_OF_DAY, 17);
-		endTime.set(Calendar.MINUTE, 30);
-		endTime.set(Calendar.SECOND, 0);
-		endTime.set(Calendar.MILLISECOND, 0);
-
-		// if (endTime.compareTo(nowTime) < 0) {
-		// endTime.add(Calendar.DATE, 1);
-		// }
-
-		if (nowTime.DAY_OF_MONTH == 7 | nowTime.DAY_OF_MONTH == 8) {
-			startTime.set(Calendar.DAY_OF_WEEK, 2);
-			alarm.setAlarm(AlarmDrink.this, startTime);
-		} else {
-			if (nowTime.compareTo(startTime) > 0
-					&& nowTime.compareTo(endTime) < 0) {
-				alarm.setAlarm(AlarmDrink.this, nowTime);
-			} else {
-				{
-					// startTime.add(Calendar.DATE, 1);
-					alarm.setAlarm(AlarmDrink.this, startTime);
-				}
-
-			}
-
-		}
-
-	}
 
 }

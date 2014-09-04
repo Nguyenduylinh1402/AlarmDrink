@@ -1,0 +1,46 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <!-- <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="startAlarm"
+        android:text="START ALARM" /> -->
+    <CheckBox 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cbAutoAlarm"
+        android:checked="false"
+        android:text="AUTO ALARM"
+        />
+
+    <Button
+        android:id="@+id/btnClearAlarm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="clearAlarm"
+        android:text="CLEAR ALARM" />
+
+    <!-- <Button
+        android:id="@+id/btnAutoAlarm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="autoAlarm"
+        android:text="Auto Alarm" /> -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time Set at : " />
+
+    <TextView
+        android:id="@+id/txvTimeSet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:textSize="50dp"
+        android:layout_marginLeft="100dp"/>
+
+</LinearLayout>

@@ -33,11 +33,11 @@ public class AlarmDrink extends ActionBarActivity {
 		cbAutoAlarm = (CheckBox) findViewById(R.id.cbAutoAlarm);
 		alarm = new AlarmBroadcastReceiver();
 
+		// xử lý sự kiện checkbox
 		cbAutoAlarm.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				if (cbAutoAlarm.isChecked()) {
 					save(cbAutoAlarm.isChecked());
 
@@ -55,6 +55,12 @@ public class AlarmDrink extends ActionBarActivity {
 					endTime.set(Calendar.SECOND, 0);
 					endTime.set(Calendar.MILLISECOND, 0);
 
+					Calendar middleTime = (Calendar) nowTime.clone();
+					endTime.set(Calendar.HOUR_OF_DAY, 24);
+					endTime.set(Calendar.MINUTE, 0);
+					endTime.set(Calendar.SECOND, 0);
+					endTime.set(Calendar.MILLISECOND, 0);
+
 					// if (endTime.compareTo(nowTime) < 0) {
 					// endTime.add(Calendar.DATE, 1);
 					// }
@@ -67,9 +73,17 @@ public class AlarmDrink extends ActionBarActivity {
 								&& nowTime.compareTo(endTime) < 0) {
 							alarm.setAlarm(AlarmDrink.this, nowTime);
 						} else {
-							{
+							if (nowTime.compareTo(middleTime) < 0) {
 								startTime.add(Calendar.DATE, 1);
 								alarm.setAlarm(AlarmDrink.this, startTime);
+
+								txvTimeSet.setText(startTime
+										.get(Calendar.HOUR_OF_DAY)
+										+ ":"
+										+ startTime.get(Calendar.MINUTE));
+							} else {
+								alarm.setAlarm(AlarmDrink.this, startTime);
+
 								txvTimeSet.setText(startTime
 										.get(Calendar.HOUR_OF_DAY)
 										+ ":"

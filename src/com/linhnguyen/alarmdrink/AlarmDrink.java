@@ -72,6 +72,10 @@ public class AlarmDrink extends ActionBarActivity {
 						if (nowTime.compareTo(startTime) > 0
 								&& nowTime.compareTo(endTime) < 0) {
 							alarm.setAlarm(AlarmDrink.this, nowTime);
+							txvTimeSet.setText(nowTime
+									.get(Calendar.HOUR_OF_DAY)
+									+ ":"
+									+ nowTime.get(Calendar.MINUTE));
 						} else {
 							if (nowTime.compareTo(middleTime) < 0) {
 								startTime.add(Calendar.DATE, 1);
